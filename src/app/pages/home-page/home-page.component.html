@@ -1,4 +1,6 @@
-<app-card *ngFor="let movie of mockMovies" [image]="movie.image" [name]="movie.name">
-
-</app-card>
-
+<div class="container">
+  <app-card (click)="redirectTo(movie.id)"
+            *ngFor="let movie of mockMovies"
+            [image]="movie.image" [name]="movie.name">
+  </app-card>
+</div>

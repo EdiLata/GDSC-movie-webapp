@@ -1,7 +1,9 @@
-import {Component} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {CommonModule} from '@angular/common';
-import {MovieModel} from "../../models/movie.model";
 import {CardComponent} from "../../components/card/card.component";
+import {MovieService} from "../../services/movie.service";
+import {MovieModel} from "../../models/movie.model";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-homepage',
@@ -10,35 +12,17 @@ import {CardComponent} from "../../components/card/card.component";
   templateUrl: './home-page.component.html',
   styleUrl: './home-page.component.scss'
 })
-export class HomePageComponent {
-  public mockMovies: MovieModel[] = [
-    {
-      id: '1',
-      name: 'SpiderMan',
-      description: 'description 1',
-      rating: 4,
-      image: 'favicon.ico'
-    },
-    {
-      id: '2',
-      name: 'SuperMan',
-      description: 'description 2',
-      rating: 3,
-      image: 'favicon.ico'
-    },
-    {
-      id: '3',
-      name: 'BatMan',
-      description: 'description 3',
-      rating: 5,
-      image: 'favicon.ico'
-    },
-    {
-      id: '4',
-      name: 'BatMan 2',
-      description: 'description 4',
-      rating: 1,
-      image: 'favicon.ico'
-    },
-  ];
+export class HomePageComponent implements OnInit {
+  public mockMovies: MovieModel[] = [];
+  constructor(private movieService: MovieService,
+              private router: Router) {
+  }
+
+  ngOnInit() {
+    this.mockMovies = this.movieService.getMockMovies();
+  }
+
+  redirectTo(id: string) {
+    this.router.navigate(['details/' + id]);
+  }
 }
