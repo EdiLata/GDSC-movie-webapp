@@ -1,6 +1,7 @@
+<app-filter (selectedCategory)="filterMovies($event)"></app-filter>
 <div class="container">
   <app-card (click)="redirectTo(movie.id)"
-            *ngFor="let movie of mockMovies"
+            *ngFor="let movie of filteredMockMovies"
             [image]="movie.image" [name]="movie.name">
   </app-card>
 </div>

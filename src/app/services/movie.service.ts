@@ -13,4 +13,20 @@ export class MovieService {
   getMockMovies(): MovieModel[] {
     return mockMovies;
   }
+
+  getMockMovieById(id: string): MovieModel | undefined {
+    return mockMovies
+      .find((movie) =>
+        movie.id === id);
+  }
+
+  getCategories(): string[] {
+    const categories: string[] = [];
+    mockMovies.forEach((movie) => {
+      if(!categories.includes(movie.category)) {
+        categories.push(movie.category);
+      }
+    })
+    return categories;
+  }
 }
